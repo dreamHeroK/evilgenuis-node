@@ -13,14 +13,9 @@ const articleSchema = new mongoose.Schema({
 	// 文章标题
 	title: { type: String, required: true, validate: /\S+/ },
 
-	// 文章关键字（SEO）
-	keyword: [{ type: String, default: '' }],
 
 	// 作者
-	author: { type: String, required: true, validate: /\S+/ },
-
-	// 文章描述
-	desc: { type: String, default: '' },
+	author: { type: String, required: false, validate: /\S+/ },
 
 	// 文章内容
 	content: { type: String, required: true, validate: /\S+/ },
@@ -31,22 +26,15 @@ const articleSchema = new mongoose.Schema({
 	// 封面图
 	img_url: { type: String, default: 'http://pjo8qfo8x.bkt.clouddn.com/texture-sun-2bg.jpg' },
 
-	// 文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍F
-	type: { type: Number, default: 1 },
-
 	// 文章发布状态 => 0 草稿，1 已发布
 	state: { type: Number, default: 1 },
 
-	// 文章转载状态 => 0 原创，1 转载，2 混合
-	origin: { type: Number, default: 0 },
 
-	// 文章标签
-	tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag', required: true }],
 
 	comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment', required: true }],
 
 	// 文章分类
-	category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true }],
+	category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: false }],
 
 	// 点赞的用户
 	like_users: [
